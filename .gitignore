@@ -1,0 +1,3 @@
+.idea/
+generate_data/__pycache__/
+models/regression/__pycache__/
