@@ -29,3 +29,11 @@ class TwoDimLine():
         noise = np.random.normal(0, self.noise_std_ratio * (np.max(y) - np.min(y)), size=(self.n_points, 1))
         y += noise
         return x, y
+
+    def periodic(self, frequency=1):
+        x = np.arange(-1, 1, 2 / self.n_points, dtype='float').reshape(-1, 1)
+        y = np.sin(2 * np.pi * frequency * x)
+
+        noise = np.random.normal(0, self.noise_std_ratio * (np.max(y) - np.min(y)), size=(self.n_points, 1))
+        y += noise
+        return x, y

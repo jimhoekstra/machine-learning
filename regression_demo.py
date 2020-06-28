@@ -1,33 +1,44 @@
 import matplotlib.pyplot as plt
-from models.regression.regression import MultivariateRegressor, PolynomialRegressor
+from models.regression import MultivariateRegressor, PolynomialRegressor
+from metrics.regression import mse
 from generate_data.two_dim import TwoDimLine
 
 
 def linear_regression_demo(x, y):
     linear_regressor = MultivariateRegressor()
     linear_regressor.fit(x, y)
-    y_pred_linear = linear_regressor.predict(x)
+    y_pred = linear_regressor.predict(x)
+    print(f'MSE linear model: {mse(y, y_pred)}')
 
-    plt.plot(x, y_pred_linear, label='linear', color='darkblue')
+    plt.plot(x, y_pred, label='linear', color='darkblue')
 
-def polynomial_regression_demo(x, y):
-    quadratic_regressor = PolynomialRegressor(rank=2)
+def polynomial_regression_demo(x, y, poly_rank):
+    quadratic_regressor = PolynomialRegressor(rank=poly_rank)
     quadratic_regressor.fit(x, y)
-    y_pred_quadratic = quadratic_regressor.predict(x)
+    y_pred = quadratic_regressor.predict(x)
+    print(f'MSE polynomial model: {mse(y, y_pred)} for rank {poly_rank}')
 
-    plt.plot(x, y_pred_quadratic, label='quadratic', color='darkred')
+    plt.plot(x, y_pred, label='quadratic', color='darkred')
 
-def demo():
-    data_gen = TwoDimLine(n_points=100, noise_std_ratio=0.1)
-    x, y = data_gen.quadratic()
+def demo(x, y, poly_rank):
     plt.scatter(x, y, label='data', color='lightblue')
 
     linear_regression_demo(x, y)
-    polynomial_regression_demo(x, y)
+    polynomial_regression_demo(x, y, poly_rank)
 
     plt.title('linear & quadratic regression')
     plt.legend()
     plt.show()
 
+def main():
+    data_gen = TwoDimLine(n_points=200, noise_std_ratio=0.2)
+    print('Quadratic data')
+    x, y = data_gen.quadratic()
+    demo(x, y, poly_rank=2)
+
+    print('\nPeriodic data')
+    x, y = data_gen.periodic(frequency=1)
+    demo(x, y, poly_rank=6)
+
 if __name__ == '__main__':
-    demo()
+    main()
