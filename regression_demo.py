@@ -5,7 +5,7 @@ from generate_data.two_dim import TwoDimLine
 
 
 def linear_regression_demo(x, y):
-    linear_regressor = MultivariateRegressor()
+    linear_regressor = MultivariateRegressor(method='gd')
     linear_regressor.fit(x, y)
     y_pred = linear_regressor.predict(x)
     print(f'MSE linear model: {mse(y, y_pred)}')
@@ -13,12 +13,12 @@ def linear_regression_demo(x, y):
     plt.plot(x, y_pred, label='linear', color='darkblue')
 
 def polynomial_regression_demo(x, y, poly_rank):
-    quadratic_regressor = PolynomialRegressor(rank=poly_rank)
+    quadratic_regressor = PolynomialRegressor(rank=poly_rank, method='gd')
     quadratic_regressor.fit(x, y)
     y_pred = quadratic_regressor.predict(x)
     print(f'MSE polynomial model: {mse(y, y_pred)} for rank {poly_rank}')
 
-    plt.plot(x, y_pred, label='quadratic', color='darkred')
+    plt.plot(x, y_pred, label='polynomial', color='darkred')
 
 def demo(x, y, poly_rank):
     plt.scatter(x, y, label='data', color='lightblue')
@@ -26,7 +26,7 @@ def demo(x, y, poly_rank):
     linear_regression_demo(x, y)
     polynomial_regression_demo(x, y, poly_rank)
 
-    plt.title('linear & quadratic regression')
+    plt.title('linear & polynomial regression')
     plt.legend()
     plt.show()
 
