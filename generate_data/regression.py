@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class TwoDimLine():
+class Line:
 
     def __init__(self, n_points, noise_std_ratio):
         self.n_points = n_points

@@ -24,15 +24,16 @@ class MultivariateRegressor():
     def fit_gd(self, X, y):
         self.B = np.random.normal(0, 0.1, (X.shape[1], 1))
 
-        prev_error = 0.0
+        prev_loss = 0.0
         for i in range(self.max_iter):
             y_pred = np.dot(X, self.B)
             error = y - y_pred
 
-            if np.abs(prev_error - np.mean(error**2)) < self.convergence_threshold:
+            loss = np.mean(error ** 2)
+            if np.abs(prev_loss - loss) < self.convergence_threshold:
                 break
 
-            prev_error = np.mean(error**2)
+            prev_loss = loss
             grad = np.dot(X.T, 2*error)
             self.B += (self.lr * grad)
 
