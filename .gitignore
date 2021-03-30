@@ -1,4 +1,5 @@
 .idea/
+venv/
 
 generate_data/__pycache__/
 metrics/__pycache__/
