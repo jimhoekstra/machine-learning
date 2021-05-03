@@ -1,4 +1,4 @@
-from dash_app.app import app
+from dash_app.index import app
 
 
 if __name__ == '__main__':

@@ -8,17 +8,20 @@ class Line:
         self.noise_std_ratio = noise_std_ratio
         self.MAX_SLOPE = 1
 
-    def linear(self, slope=None):
+        self.x = None
+        self.y = None
+
+    def generate_linear(self, slope=None):
         slopes = [slope] if slope is not None else None
-        return self.poly(rank=1, slopes=slopes)
+        self.generate_poly(rank=1, slopes=slopes)
 
-    def quadratic(self, slopes=None):
-        return self.poly(rank=2, slopes=slopes)
+    def generate_quadratic(self, slopes=None):
+        self.generate_poly(rank=2, slopes=slopes)
 
-    def qubic(self, slopes=None):
-        return self.poly(rank=3, slopes=slopes)
+    def generate_qubic(self, slopes=None):
+        self.generate_poly(rank=3, slopes=slopes)
 
-    def poly(self, rank, slopes=None):
+    def generate_poly(self, rank, slopes=None):
         x = np.arange(-1, 1, 2/self.n_points, dtype='float').reshape(-1, 1)
         slopes = slopes if slopes is not None else np.random.random(rank) * (self.MAX_SLOPE*2) - self.MAX_SLOPE
 
@@ -28,12 +31,17 @@ class Line:
 
         noise = np.random.normal(0, self.noise_std_ratio * (np.max(y) - np.min(y)), size=(self.n_points, 1))
         y += noise
-        return x, y
+        self.x = x
+        self.y = y
 
-    def periodic(self, frequency=1):
+    def generate_periodic(self, frequency=1):
         x = np.arange(-1, 1, 2 / self.n_points, dtype='float').reshape(-1, 1)
         y = np.sin(2 * np.pi * frequency * x)
 
         noise = np.random.normal(0, self.noise_std_ratio * (np.max(y) - np.min(y)), size=(self.n_points, 1))
         y += noise
-        return x, y
+        self.x = x
+        self.y = y
+
+    def get_data(self):
+        return self.x, self.y

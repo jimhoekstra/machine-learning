@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from generate_data.classification import OneDim, Circles
+from data.classification import OneDim, Circles
 from models.classification import KNN
 
 

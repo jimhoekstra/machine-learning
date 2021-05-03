@@ -1,7 +1,7 @@
 # import matplotlib.pyplot as plt
 from models.regression import MultivariateRegressor, PolynomialRegressor
 from metrics.regression import mse
-from generate_data.regression import Line
+from data.regression import Line
 
 
 def linear_regression_demo(x, y):

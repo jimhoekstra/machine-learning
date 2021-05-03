@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class MultivariateRegressor():
+class MultivariateRegressor:
 
     def __init__(self, method='ls', lr=0.001, max_iter=10000):
         self.B = None
