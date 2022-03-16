@@ -1,8 +1,1 @@
-.idea/
-venv/
-
-data/__pycache__/
-metrics/__pycache__/
-models/__pycache__/
-models/regression/__pycache__/
-dash_app/__pycache__/
+**/__pycache__/
