@@ -1,7 +1,7 @@
 # import matplotlib.pyplot as plt
 # import numpy as np
-from machine_learning.data.classification import OneDim, Circles
-from machine_learning.models.classification import KNN
+from machine_learning_jh.data.classification import OneDim, Circles
+from machine_learning_jh.models.classification import KNN
 
 
 def one_dim_demo(n_points, n_classes):

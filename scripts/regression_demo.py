@@ -1,6 +1,6 @@
-from machine_learning.models.regression import MultivariateRegressor, PolynomialRegressor
-from machine_learning.metrics.regression import mse
-from machine_learning.data.regression import Line
+from machine_learning_jh.models.regression import MultivariateRegressor, PolynomialRegressor
+from machine_learning_jh.metrics.regression import mse
+from machine_learning_jh.data.regression import Line
 
 
 def linear_regression_demo(x, y):
