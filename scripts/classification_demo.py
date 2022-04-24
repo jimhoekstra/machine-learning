@@ -1,11 +1,11 @@
 # import matplotlib.pyplot as plt
 # import numpy as np
-from machine_learning_jh.data.classification import OneDim, Circles
-from machine_learning_jh.models.classification import KNN
+from machine_learning_jh.data import OneDimClasses, Circles
+from machine_learning_jh.models import KNN
 
 
 def one_dim_demo(n_points, n_classes):
-    data_gen = OneDim(n_points, n_classes, 1.5)
+    data_gen = OneDimClasses(n_points, n_classes, 1.5)
     features, target = data_gen.generate()
 
     knn = KNN(k=3)
